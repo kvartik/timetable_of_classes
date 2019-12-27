@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   has_many :calendar
-  has_many :event_groups
-  has_many :notebook
-  has_many :homework
+  has_one :homework
+  has_one :event_group
+
+  validates_presence_of :calendar, :event_group, :homework, :datetime
 end

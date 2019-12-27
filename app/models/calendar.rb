@@ -1,5 +1,6 @@
 class Calendar < ApplicationRecord
-belongs_to :user
-has_many :event_groups
-has_many :event
+  has_many :event
+
+
+  # validates_presence_of :
 end
