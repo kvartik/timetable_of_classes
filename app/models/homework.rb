@@ -1,5 +1,5 @@
 class Homework < ApplicationRecord
-  has_one :event_group
+  has_one :group
 
-  validates_presence_of :event, :text 
+  validates_presence_of :event, :text
 end

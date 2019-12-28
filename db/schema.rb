@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_27_215714) do
+ActiveRecord::Schema.define(version: 2019_12_28_143814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,23 +22,23 @@ ActiveRecord::Schema.define(version: 2019_12_27_215714) do
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
-  create_table "event_groups", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "calendar_id", null: false
+    t.datetime "event_date"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["calendar_id"], name: "index_events_on_calendar_id"
+    t.index ["group_id"], name: "index_events_on_group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
     t.string "group"
     t.bigint "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_event_groups_on_event_id"
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.bigint "event_group_id", null: false
-    t.bigint "calendar_id", null: false
-    t.datetime "event_date"
-    t.string "event"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["calendar_id"], name: "index_events_on_calendar_id"
-    t.index ["event_group_id"], name: "index_events_on_event_group_id"
+    t.index ["event_id"], name: "index_groups_on_event_id"
   end
 
   create_table "homeworks", force: :cascade do |t|
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2019_12_27_215714) do
   end
 
   create_table "notebooks", force: :cascade do |t|
-    t.bigint "event_group_id"
+    t.bigint "group_id"
     t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_group_id"], name: "index_notebooks_on_event_group_id"
+    t.index ["group_id"], name: "index_notebooks_on_group_id"
   end
 
 end
