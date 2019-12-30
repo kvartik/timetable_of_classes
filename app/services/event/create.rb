@@ -1,3 +1,5 @@
+
+
 module EventServices
  class Create < SupportService::GeneralService
    def initialize(data)
@@ -5,14 +7,14 @@ module EventServices
    end
 
    def call
-     event = Event.new(title: data[:title], date: data[:date])
+     event = Event.new(title: data[:title], date: data[:date], group: data[:group], calendar: data[:calendar])
      if event.valid?
        event.save
        self.result = "Event created"
-       Success(self)
+
      else
        errors << event.errors
-       Failure(self)
+
      end
    end
   end
