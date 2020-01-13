@@ -3,5 +3,5 @@ class Event < ApplicationRecord
   has_one :homework
   has_one :group
 
- validates_presence_of :calendar, :group, :homework, :datetime
+# validates_presence_of :calendars, :group, :homework, :datetime
 end
