@@ -10,7 +10,7 @@ module GroupServices
      if @groups.valid?
        @groups.save
      else
-        errors << event.errors
+        errors << groups.errors
    end
  end
 end

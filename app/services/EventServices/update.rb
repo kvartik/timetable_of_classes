@@ -1,5 +1,5 @@
 module EventServices
-class Update < SupportService::GeneralService
+class Update 
 
 
 end
