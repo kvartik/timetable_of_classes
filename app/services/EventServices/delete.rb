@@ -6,7 +6,7 @@ module EventServices
 
    def call
       @event = Event.find_by(id: @id)
-      @event_errors = []
+    #  @event_errors = []
      if @event != nil
        @event.destroy
        result = 'Event deleted'
