@@ -6,13 +6,11 @@ module HomeworkServices
    end
 
    def call
-     #byebug
-
      @homework = Homework.new(event_id: @event_id, text: @text)
      if @homework.valid?
        @homework.save
      else
-      errors << homework.errors
+       errors << homework.errors
    end
  end
 end

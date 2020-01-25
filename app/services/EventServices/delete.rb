@@ -1,15 +1,19 @@
 module EventServices
  class Delete
-
+   def initialize(id)
+    @id = id
+   end
 
    def call
-@event = Event.find(params[:id])
-@event.destroy
-if @event.destroy?
-  self.result = 'Delete event'
-else
-  errors << @event.errors
-   end
+      @event = Event.find_by(id: @id)
+      @event_errors = []
+     if @event != nil
+       @event.destroy
+       result = 'Event deleted'
+     else
+    #   errors << @event_errors
+       result = "Event not deleted"
+     end
  end
 end
 end
